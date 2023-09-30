@@ -1,8 +1,11 @@
+import { Link } from 'react-router-dom';
+
 const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const emailValue = event.target.email.value;
     const passwordValue = event.target.password.value;
+    console.log(emailValue, passwordValue);
   };
 
   return (
@@ -45,6 +48,11 @@ const Login = () => {
                 {/*  */}
                 <div className="form-control mt-6">
                   <button className="btn btn-primary">Login</button>
+                </div>
+                <div className="form-control mt-6">
+                  <Link to="/register">
+                    <button className="btn btn-primary">Register</button>
+                  </Link>
                 </div>
               </div>
             </div>
