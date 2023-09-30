@@ -1,5 +1,5 @@
-function App() {
-  return <>this is firebase second app</>;
-}
+const App = () => {
+  return <div></div>;
+};
 
 export default App;

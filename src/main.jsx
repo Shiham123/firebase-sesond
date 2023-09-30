@@ -10,6 +10,7 @@ import Contact from './page/contact.jsx';
 import Login from './page/login.jsx';
 import Register from './page/register.jsx';
 import ErrorPage from './page/errorpage.jsx';
+import { AppProvider } from './context/userContext';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AppProvider>
+      <RouterProvider router={router} />
+    </AppProvider>
   </React.StrictMode>
 );

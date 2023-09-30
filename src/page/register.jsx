@@ -6,18 +6,16 @@ import {
   Typography,
 } from '@material-tailwind/react';
 
+import { Link } from 'react-router-dom';
+
 const Register = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
-
     const formData = new FormData(event.target);
-    console.log(formData);
 
     const userNameValue = formData.get('userName');
     const emailValue = formData.get('email');
     const passwordValue = formData.get('password');
-
-    console.log(userNameValue, emailValue, passwordValue);
   };
 
   return (
@@ -78,10 +76,7 @@ const Register = () => {
             Register
           </Button>
           {/* <Typography color="gray" className="mt-4 text-center font-normal">
-            Already have an account?{' '}
-            <a href="#" className="font-medium text-gray-900">
-              Sign In
-            </a>
+            Already have an account? <Link to="/login">Sign In</Link>
           </Typography> */}
         </form>
       </Card>
