@@ -38,13 +38,13 @@ function NavList() {
       >
         <NavLink
           to="/contact"
-          className={({ isActive, isPending }) => {
+          className={({ isActive, isPending }) =>
             isPending
               ? 'pending'
               : isActive
               ? 'text-[#FF444A] border-b-2 border-[#FF444A]'
-              : '';
-          }}
+              : ''
+          }
         >
           Contact
         </NavLink>
