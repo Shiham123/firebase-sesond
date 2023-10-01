@@ -1,14 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   Navbar,
   Collapse,
   Typography,
   IconButton,
+  Button,
 } from '@material-tailwind/react';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { NavLink } from 'react-router-dom';
 
-function NavList() {
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { Link, NavLink } from 'react-router-dom';
+
+import { AppContext } from '../context/userContext';
+
+const NavList = () => {
+  const authContext = useContext(AppContext);
+  const { user, logOut } = authContext;
+
+  const handleSignOut = () => {
+    logOut()
+      .then((result) => console.log(result))
+      .catch((error) => console.log(error));
+  };
+
   return (
     <ul className="my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
       <Typography
@@ -87,11 +100,41 @@ function NavList() {
           Register
         </NavLink>
       </Typography>
+      {user ? (
+        <Typography
+          as="li"
+          variant="small"
+          color="blue-gray"
+          className="p-1 font-medium"
+        >
+          <Button
+            className="mt-6"
+            fullWidth
+            type="submit"
+            onClick={handleSignOut}
+          >
+            Sign out
+          </Button>
+        </Typography>
+      ) : (
+        <Typography
+          as="li"
+          variant="small"
+          color="blue-gray"
+          className="p-1 font-medium"
+        >
+          <Link to="/register">
+            <Button className="mt-6" fullWidth type="submit">
+              Sign In
+            </Button>
+          </Link>
+        </Typography>
+      )}
     </ul>
   );
-}
+};
 
-function NavbarSimple() {
+const NavbarSimple = () => {
   const [openNav, setOpenNav] = React.useState(false);
 
   const handleWindowResize = () =>
@@ -137,6 +180,6 @@ function NavbarSimple() {
       </Collapse>
     </Navbar>
   );
-}
+};
 
 export default NavbarSimple;
