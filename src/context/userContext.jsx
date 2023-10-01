@@ -1,11 +1,26 @@
-import { createContext } from 'react';
+import { createContext, useState } from 'react';
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
+import globalAuth from '../firebase/firebase.config';
 
 const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
-  const appInfo = { name: 'person one' };
+  const [user, setUser] = useState(null);
 
-  return <AppContext.Provider value={appInfo}>{children}</AppContext.Provider>;
+  const createUser = (email, password) => {
+    return createUserWithEmailAndPassword(globalAuth, email, password);
+  };
+
+  const signInUser = (email, password) => {
+    return signInWithEmailAndPassword(globalAuth, email, password);
+  };
+
+  const authInfo = { user, createUser, signInUser };
+
+  return <AppContext.Provider value={authInfo}>{children}</AppContext.Provider>;
 };
 
 export { AppContext, AppProvider };

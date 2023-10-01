@@ -1,11 +1,19 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AppContext } from '../context/userContext';
 
 const Login = () => {
+  const signInContext = useContext(AppContext);
+  const { signInUser } = signInContext;
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const emailValue = event.target.email.value;
     const passwordValue = event.target.password.value;
-    console.log(emailValue, passwordValue);
+
+    signInUser(emailValue, passwordValue)
+      .then((result) => console.log(result))
+      .catch((error) => console.log(error));
   };
 
   return (
