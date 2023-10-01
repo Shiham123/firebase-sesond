@@ -130,6 +130,25 @@ const NavList = () => {
           </Link>
         </Typography>
       )}
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-medium"
+      >
+        <NavLink
+          to="/orders"
+          className={({ isActive, isPending }) =>
+            isPending
+              ? 'pending'
+              : isActive
+              ? 'text-[#FF444A] border-b-2 border-[#FF444A]'
+              : ''
+          }
+        >
+          Orders
+        </NavLink>
+      </Typography>
     </ul>
   );
 };
